@@ -172,12 +172,12 @@ interface CLIOptions {
 
 interface Diagnostic {
     category: string;
-    code: number;
+    code: bigint;
     text: string;
     file?: {
         path: string;
-        line: number;
-        character: number;
+        line: bigint;
+        character: bigint;
     };
 }
 
@@ -216,8 +216,8 @@ function formatDiagnostic(diag: Diagnostic, cwd: string): string {
     let prefix = "";
     if (file !== undefined) {
         const filename = formatFilename(file.path, cwd);
-        const line = file.line + 1;
-        const character = file.character + 1;
+        const line = file.line + 1n;
+        const character = file.character + 1n;
 
         const pathSegment = styleFile(filename);
         const lineSegment = styleLocation(String(line));
